@@ -23,7 +23,7 @@ Just download the latest version from https://github.com/HardCorePawn/multibit_r
      * Manual installation:
          1. You must have Python 2.7.9 or later (or you must [manually install Python pip](https://pip.pypa.io/en/latest/installing.html#install-pip)).
          2. Open a command prompt (Start -> Run, type `cmd` and click OK).
-         3. Type this at the command prompt: `C:\Python27\Scripts\pip install protobuf pylibscrypt`, and then press the `Enter` key.
+         3. Type this at the command prompt: `C:\Python27\Scripts\pip install protobuf pylibscrypt bitcoin binascii`, and then press the `Enter` key.
 
 ### Linux ###
 
