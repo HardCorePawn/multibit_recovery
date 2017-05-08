@@ -20,7 +20,7 @@ if ( -not (Test-Path -Path C:\Python27\Scripts\pip.exe) ) {
     del "$env:TEMP\get-pip.py"
 }
 
-C:\Python27\Scripts\pip install protobuf pylibscrypt bitcoin binascii
+C:\Python27\Scripts\pip install protobuf pylibscrypt bitcoin
 if ($LastExitCode -ne 0) {
     Write-Host -NoNewline Failed to install required Python libraries. Press any key to exit ...
     $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") > $null
