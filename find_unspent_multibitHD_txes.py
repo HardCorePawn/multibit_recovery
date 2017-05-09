@@ -145,17 +145,85 @@ def load_wallet(wallet_file, get_password_fn):
     f.write(pb_wallet.__str__())
     f.close()
     
+    foundAddr = []
+    
     for trans in pb_wallet.transaction:
       if trans.pool == 4:
         print("--------------------------------------------------------------------------------")
         print("TXID: " + binascii.hexlify(trans.hash))
         for out in trans.transaction_output:
           print("")
-          print("Addr: " + bitcoin.bin_to_b58check(bitcoin.deserialize_script(out.script_bytes)[2]))
+          faddr = bitcoin.bin_to_b58check(bitcoin.deserialize_script(out.script_bytes)[2])
+          print("Addr: " + faddr)
+          foundAddr.append(faddr)
           print("Amt: " + str(out.value * 0.00000001) + " BTC")
         print("")
         print("--------------------------------------------------------------------------------")
     
+    seed = None
+    
+    sys.stdout.write('Finding Seed....')
+    
+    salt = pb_wallet.encryption_parameters.salt
+    dkey = pylibscrypt.scrypt(password.encode('utf_16_be'), salt, olen=32)
+    
+    for wkey in pb_wallet.key:
+      if wkey.type == 3:
+        seed = aes256_cbc_decrypt(wkey.encrypted_deterministic_seed.encrypted_private_key, dkey, wkey.encrypted_deterministic_seed.initialisation_vector)
+        break
+        
+    if not seed:
+      print("No DETERMINISTIC_MNEMONIC seed found!")
+      return None
+    else:
+      print("Done!")
+    xprv = bitcoin.bip32_master_key(seed)
+    
+    xprvReceive = bitcoin.bip32_ckd(bitcoin.bip32_ckd(xprv, 2**31),0) #m/0'/0
+    xprvChange = bitcoin.bip32_ckd(bitcoin.bip32_ckd(xprv, 2**31),1) #m/0'/1
+    
+    rcvAddr = []
+    chgAddr = []
+    rcvPrivKey = []
+    chgPrivKey = []
+    
+    sys.stdout.write("Generating Addresses/Keys.")
+    for x in range(0,1000):
+      if x % 10 == 0:
+        sys.stdout.write(".")
+      childprivReceive = bitcoin.bip32_ckd(xprvReceive, x)
+      childprivChange = bitcoin.bip32_ckd(xprvChange, x)
+      
+      pkeyReceive = bitcoin.bip32_extract_key(childprivReceive)
+      pkeyChange = bitcoin.bip32_extract_key(childprivChange)
+      
+      #addressReceive = privtoaddr(pkeyReceive)
+      #addressChange = privtoaddr(pkeyChange)
+      rcvAddr.append(bitcoin.privtoaddr(pkeyReceive))
+      chgAddr.append(bitcoin.privtoaddr(pkeyChange))
+      
+      rcvPrivKey.append(bitcoin.encode_privkey(pkeyReceive, 'wif_compressed'))
+      chgPrivKey.append(bitcoin.encode_privkey(pkeyChange, 'wif_compressed'))
+    print("Done!")  
+    
+    print("--------------------------------------------------------------------------------")
+    
+    for addy in foundAddr:
+      if addy in rcvAddr:
+        print("")
+        print("Found Address: " + addy)
+        print("PrivateKey: " + rcvPrivKey[rcvAddr.index(addy)])
+      elif addy in chgAddr:
+        print("")
+        print("Found Change Address: " + addy)
+        print("PrivateKey: " + chgPrivKey[chgAddr.index(addy)])
+      else:
+        print("")
+        print("Address not found: " + addy)
+    
+    print("")
+    print("--------------------------------------------------------------------------------")
+      
     return pb_wallet
 
 
