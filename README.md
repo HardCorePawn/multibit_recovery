@@ -52,6 +52,13 @@ Find your Key Backup (%appdata%/MultiBit/multibit-data/key-backup/multibit-\<DAT
 
 Enter your wallet password and an unencrypted list of all your private keys should be output. Go and import them into another wallet like [Electrum](https://electrum.org/) ;)
 
+### decrypt_multibit_classic_walletkeys.py
+
+If you don't have a Key Backup, then use this script to extract the keys directly from the .wallet file. Copy your multibit.wallet file to the folder where you extracted multibit_recovery scripts. Open a commandline at the folder where you extracted the scripts and then run the script:
+* `python decrypt_multibit_classic_walletkeys.py multibit.wallet`
+
+Enter your wallet password (if wallet was password protected) and an unencrypted list of all your Public and Private Keys should be output. Go and import them into another wallet like [Electrum](https://electrum.org/) ;)
+
 ## Credits ##
 
 * Borrowed heavily from the incredibly useful ["decrypt_bitcoinj_seed" by Christopher Gurnee](https://github.com/gurnec/decrypt_bitcoinj_seed)
