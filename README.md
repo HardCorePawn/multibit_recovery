@@ -18,7 +18,7 @@ Just download the latest version from https://github.com/HardCorePawn/multibit_r
 *NOTE: wll probably not work properly with Python 3... make sure you're using Python 2!*
 
  * Python 2.7 – visit the download page here: <https://www.python.org/downloads/windows/>, and click the link for the latest Python 2 release. Download and run either the `Windows x86 MSI installer` for the 32-bit version of Python, or the `Windows x86-64 MSI installer` for the 64-bit one. If you're unsure which one is compatible with your PC, choose the 32-bit one.
- * Google Protobuf and pylibscrypt for Python – choose *one* of the following two installation methods:
+ * Google Protobuf and pylibscrypt for Python and bitcoin – choose *one* of the following two installation methods:
      * Automated installation: right-click on the included *install-windows-requirements.ps1* file and choose *Run with Powershell*. Automated installation typically only works with Windows Vista SP1 and higher (including Windows 7+), but it doesn't hurt to try with other versions of Windows.
      * Manual installation:
          1. You must have Python 2.7.9 or later (or you must [manually install Python pip](https://pip.pypa.io/en/latest/installing.html#install-pip)).
