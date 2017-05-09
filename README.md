@@ -5,7 +5,7 @@
 
 ## Warning ##
 
-The MultiBit Classic script extracts unencrypted Private Keys from your MultiBit Classic Key Backup. If you are uncertain whether or not your computer is completely free of malware, you should not run this nor any other program that can affect your finances.
+Some of these scripts extract unencrypted Private Keys from your Wallet file or Key Backup. If you are uncertain whether or not your computer is completely free of malware, you should not run this nor any other program that can affect your finances.
 
 Even if you are certain you are currently free of malware, it is strongly advised that you not store unencrypted private keys to your hard drive.
 
@@ -39,9 +39,7 @@ Copy your "broken" MultiBit HD wallet file (%appdata%/MulitBitHD/mbhd-\<GUID>/mb
 
 Enter your wallet password and a list of Transactions in the wallet UNSPENT pool should be output along with Addresses and Amounts.
 
-You can then find your private keys for these addresses by using: https://iancoleman.github.io/bip39/
-Create an offline copy of that page, put in your seed, set BIP32 to "MultiBitHD" and then match the Addresses found by the script
-Note: You will need to set BIP32 to "Custom" and Derivation Path to "m/0'/1" to find your change addresses!
+The script will then look through the first 1000 addresses/keys on the m/0'/0 (Receive Addresses) and m/0'/1 (Change Addresses) Derivation Paths. If it there is a match for an address from a transaction in the UNSPENT pool, it will dump the Address and Private Key (in "WIF Compressed" format).
 
 Please note that some MultiBitHD wallet files may take several minutes to decrypt (if you don't have [one of the optional libraries](https://pypi.python.org/pypi/pylibscrypt#requirements) installed).
 
