@@ -61,7 +61,9 @@ Enter your wallet password (if wallet was password protected) and an unencrypted
 
 * Borrowed heavily from the incredibly useful ["decrypt_bitcoinj_seed" by Christopher Gurnee](https://github.com/gurnec/decrypt_bitcoinj_seed)
 
-Third-party libraries distributed with decrypt\_bitcoinj\_seed.pyw include:
+* [mocaccino](http://www.mocacinno.com/) - for helping me work out the BIP32 Derivation Path stuff
+
+Third-party libraries distributed with multibit_recovery include:
 
  * aespython, please see [aespython/README.txt](aespython/README.txt) for
  more information
