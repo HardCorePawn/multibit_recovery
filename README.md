@@ -30,6 +30,14 @@ Just download the latest version from https://github.com/HardCorePawn/multibit_r
 * This project has NOT been tested on Linux... I have no idea if it will work. You can try following the Linux install instructions for ["decrypt_bitcoinj_seed" by Christopher Gurnee](https://github.com/gurnec/decrypt_bitcoinj_seed)
 * Let me know if it works! ;)
 
+As [suggested by Matthew Pilsbury](https://github.com/HardCorePawn/multibit_recovery/issues/7) you can try:
+>To install dependencies:
+>`pip install protobuf pylibscrypt bitcoin `
+> 
+>To execute:
+>`python2 find_unspent_multibitHD_txes.py mbhd.wallet.aes `
+
+
 ## How to Use ##
 
 ### find_unspent_multibitHD_txes.py ###
