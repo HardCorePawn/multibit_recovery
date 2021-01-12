@@ -65,6 +65,16 @@ If you don't have a Key Backup, then use this script to extract the keys directl
 
 Enter your wallet password (if wallet was password protected) and an unencrypted list of all your Public and Private Keys should be output. Go and import them into another wallet like [Electrum](https://electrum.org/) ;)
 
+### decrypt_multibit_classic_wallet_cipher.py
+
+When a password is first added to a wallet, MultiBit Classic would encrypt any unencrypted backups (in the 'wallet-unenc-backup' folder) using the new wallet password. If you have such a .wallet.cipher file, you can use this script to decrypt the .cipher file and then extract the keys. Open a commandline at the folder where you extracted the scripts and then run the script:
+* `python decrypt_multibit_classic_wallet_cipher.py multibit.wallet.cipher`
+
+### Alternative Usage - Windows ###
+
+If you're not comfortable with the commandline, you can actually use "drag and drop" (Tested on Windows). Simply drag and drop the .key or .wallet or .cipher file on the appropriate .py script file and it should automatically launch the script.
+
+
 ## Credits ##
 
 * Borrowed heavily from the incredibly useful ["decrypt_bitcoinj_seed" by Christopher Gurnee](https://github.com/gurnec/decrypt_bitcoinj_seed)
