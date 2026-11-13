@@ -9,13 +9,19 @@ Some of these scripts extract unencrypted Private Keys from your Wallet file or 
 
 Even if you are certain you are currently free of malware, it is strongly advised that you not store unencrypted private keys to your hard drive.
 
+## 2026 Update ##
+
+* Added _py3.py versions of the Multibit Classic scripts (decrypt_multibit_classic_keys_py3.py, decrypt_multibit_classic_wallet_cipher_py3.py and decrypt_multibit_classic_walletkeys_py3.py) and updated the associated wallet protobuf (wallet_pb3.py) to work with newer versions of protobuf.
+    * These should work with newer versions of Python 3 (tested with 3.15)
+    * You will require a version of protobuf >= 4.21.0 installed (eg. pip install "protobuf>=4.21.0")
+
 ## Installation ##
 
 Just download the latest version from https://github.com/HardCorePawn/multibit_recovery/archive/master.zip and unzip it to a location of your choice. There’s no installation procedure for the actual Python scripts, however there are additional requirements below.
 
 ### Windows ###
 
-*NOTE: wll probably not work properly with Python 3... make sure you're using Python 2!*
+*NOTE: will probably not work properly with Python 3... make sure you're using Python 2!*
 
  * Python 2.7 – visit the download page here: <https://www.python.org/downloads/windows/>, and click the link for the latest Python 2 release. Download and run either the `Windows x86 MSI installer` for the 32-bit version of Python, or the `Windows x86-64 MSI installer` for the 64-bit one. If you're unsure which one is compatible with your PC, choose the 32-bit one.
  * Google Protobuf and pylibscrypt for Python and bitcoin – choose *one* of the following two installation methods:
